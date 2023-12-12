@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
                   onPressed: () async {
                     FictionSocialAuth socialAuth = FictionSocialAuth();
                     UserData? user =
-                        await socialAuth.socialAuth(AuthType.GOOGLE);
+                        await socialAuth.socialAuth(AuthType.google);
                     print("UserData: ${user?.toJson()}");
                   },
                   child: Text("Google"),
@@ -35,7 +35,7 @@ class MainApp extends StatelessWidget {
                   onPressed: () async {
                     FictionSocialAuth socialAuth = FictionSocialAuth();
                     UserData? user =
-                        await socialAuth.socialAuth(AuthType.GITHUB);
+                        await socialAuth.socialAuth(AuthType.github);
                     print("UserData: ${user?.toJson()}");
                   },
                   child: Text("Github"),
@@ -47,7 +47,7 @@ class MainApp extends StatelessWidget {
                   onPressed: () async {
                     FictionSocialAuth socialAuth = FictionSocialAuth();
                     UserData? user =
-                        await socialAuth.socialAuth(AuthType.LINKEDIN);
+                        await socialAuth.socialAuth(AuthType.linkedin);
                     print("UserData: ${user?.toJson()}");
                   },
                   child: Text("LinkedIn"),

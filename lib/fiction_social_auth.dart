@@ -12,24 +12,23 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 class FictionSocialAuth {
   Future<UserData?> socialAuth(AuthType type) async {
     switch (type) {
-      case AuthType.GITHUB:
+      case AuthType.github:
         return await _getGithubSignIn();
-
-      case AuthType.GOOGLE:
+      case AuthType.google:
         return await _getGoogleSignIn();
-      case AuthType.LINKEDIN:
-        return await _getGoogleSignIn();
+      case AuthType.linkedin:
+        return await _getLinkedinSignIn();
     }
   }
 
   Future<UserData?> _getGithubSignIn() async {
     try {
       final result = await FlutterWebAuth2.authenticate(
-        url: "${AuthConstant.authUrl}${AuthTypeConst.GITHUB_SIGNIN}",
+        url: "${AuthConstant.authUrl}${AuthTypeConst.githubSignIn}",
         callbackUrlScheme: AuthConstant.schemeUrl,
       );
 
-      return await extractUserData(result);
+      return extractUserData(result);
     } catch (e) {
       return null;
     }
@@ -38,11 +37,11 @@ class FictionSocialAuth {
   _getGoogleSignIn() async {
     try {
       final result = await FlutterWebAuth2.authenticate(
-        url: "${AuthConstant.authUrl}${AuthTypeConst.GOOGLE_SIGNIN}",
+        url: "${AuthConstant.authUrl}${AuthTypeConst.googleSignIn}",
         callbackUrlScheme: AuthConstant.schemeUrl,
       );
 
-      return await extractUserData(result);
+      return extractUserData(result);
     } catch (e) {
       return null;
     }
@@ -51,11 +50,11 @@ class FictionSocialAuth {
   _getLinkedinSignIn() async {
     try {
       final result = await FlutterWebAuth2.authenticate(
-        url: "${AuthConstant.authUrl}${AuthTypeConst.LINKEDiN_SIGNIN}",
+        url: "${AuthConstant.authUrl}${AuthTypeConst.linkedinSignIn}",
         callbackUrlScheme: AuthConstant.schemeUrl,
       );
 
-      return await extractUserData(result);
+      return extractUserData(result);
     } catch (e) {
       return null;
     }
@@ -63,7 +62,6 @@ class FictionSocialAuth {
 
   UserData? extractUserData(String url) {
     Uri uri = Uri.parse(url);
-    Map<String, String> userData = {};
 
     if (uri.isScheme('social-auth-scheme')) {
       // Get the query parameters from the URL
