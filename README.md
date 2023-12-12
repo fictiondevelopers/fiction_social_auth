@@ -18,6 +18,24 @@ We know the hurdle you have to go through to just manage the social media logins
 - [ ] Twitter (Planned)
 - [ ] Others (Planned)
 
+## Android
+- Add this in AndroidManifest.xml
+```
+    <application>
+        <--->
+        <activity
+            android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
+            android:exported="true">
+            <intent-filter android:label="flutter_web_auth_2">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="social-auth-scheme" />
+            </intent-filter>
+        </activity>
+    </application>
+```
+
 
 For more information and usage examples, refer to the [documentation](https://fictiondevelopers.com/auth-system).
 
