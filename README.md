@@ -18,6 +18,17 @@ We know the hurdle you have to go through to just manage the social media logins
 - [ ] Twitter (Planned)
 - [ ] Others (Planned)
 
+## Installation
+ - Add the latest version of package to your pubspec.yaml (and run ```dart pub get```):
+```
+dependencies:
+  fiction_social_auth: ^0.0.1
+```
+ - Import the package
+```
+import 'package:fiction_social_auth/fiction_social_auth.dart';
+```
+
 ## Android
 - Add this in AndroidManifest.xml
 ```
@@ -34,6 +45,63 @@ We know the hurdle you have to go through to just manage the social media logins
             </intent-filter>
         </activity>
     </application>
+```
+
+## Example
+```
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Fiction Social Auth")),
+        body: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () async {
+                    FictionSocialAuth socialAuth = FictionSocialAuth();
+                    UserData? user =
+                        await socialAuth.socialAuth(AuthType.google);
+                    print("UserData: ${user?.toJson()}");
+                  },
+                  child: Text("Google"),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    FictionSocialAuth socialAuth = FictionSocialAuth();
+                    UserData? user =
+                        await socialAuth.socialAuth(AuthType.github);
+                    print("UserData: ${user?.toJson()}");
+                  },
+                  child: Text("Github"),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    FictionSocialAuth socialAuth = FictionSocialAuth();
+                    UserData? user =
+                        await socialAuth.socialAuth(AuthType.linkedin);
+                    print("UserData: ${user?.toJson()}");
+                  },
+                  child: Text("LinkedIn"),
+                ),
+              ]),
+        ),
+      ),
+    );
+  }
+}
 ```
 
 
